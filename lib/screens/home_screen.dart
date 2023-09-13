@@ -17,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   late Timer timer; //initialize later to use
 
   void onTick(Timer timer) {
-    // subtract 1 from totalSeconds and call the build method
+    // if the timer is over, add one to the total promodoros
+    // and reset/stop the timer
     if (totalSeconds <= 0) {
       setState(() {
         totalPomodoros += 1;
@@ -25,7 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
         isRunning = false;
       });
       timer.cancel();
-    } else {
+    }
+    // if the timer is not over, subtract 1 from totalSeconds and call the build method
+    else {
       setState(() {
         totalSeconds -= 1;
       });
